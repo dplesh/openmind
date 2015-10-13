@@ -2,8 +2,8 @@
 
 if(isset($_POST['email'])) {
 
-    $email_to = "open.mind@outlook.co.il";
- 
+    $email_to =    "dplesh255@gmail.com";
+
     $email_subject = "New Entry";
 
  
