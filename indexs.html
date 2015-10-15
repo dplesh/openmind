@@ -1,121 +1,3 @@
-<?php
- 
-
- 
-     
- 
-    // EDIT THE 2 LINES BELOW AS REQUIRED
- 
-    $email_to = "open.mind@outlook.co.il";
- 
-    $email_subject = "מתעניין חדש בשכונה";
- 
-     
- 
-     
- 
-    function died($error) {
- 
-        // your error code can go here
- 
-        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
- 
-        echo "These errors appear below.<br /><br />";
- 
-        echo $error."<br /><br />";
- 
-        echo "Please go back and fix these errors.<br /><br />";
- 
-        die();
-	}
- 
-
- if(isset($_POST['submit'])) 
-{
-  	echo "<script type='text/javascript'>alert('It worked!')</script>";
-}
-     
- 
-    // validation expected data exists
- 
-    if(!isset($_POST['name']) ||
-
- 
-        !isset($_POST['phone']) ||
- 
-        !isset($_POST['message'])) {
- 
-        died('We are sorry, but there appears to be a problem with the form you submitted.');       
- 
-    }
- 
-     
- 
-    $name = $_POST['name']; // required
- 
-    $telephone = $_POST['phone']; // not required
- 
-    $comments = $_POST['message']; // required
- 
-     
- 
-    $error_message = "";
- 
-    $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
- 
- 
- 
-  if(strlen($comments) < 2) {
- 
-    $error_message .= 'The Comments you entered do not appear to be valid.<br />';
- 
-  }
- 
-  if(strlen($error_message) > 0) {
- 
-    died($error_message);
- 
-  }
- 
-    $email_message = "Form details below.\n\n";
- 
-     
- 
-    function clean_string($string) {
- 
-      $bad = array("content-type","bcc:","to:","cc:","href");
- 
-      return str_replace($bad,"",$string);
- 
-    }
- 
-     
- 
-    $email_message .= "Name: ".clean_string($name)."\n";
- 
- 
-    $email_message .= "Telephone: ".clean_string($telephone)."\n";
- 
-    $email_message .= "Comments: ".clean_string($comments)."\n";
- 
-     
- 
-     
- 
-// create email headers
- 
-$headers = 'From: admin@op.com'."\r\n".
- 
-'Reply-To: admin@op.com'."\r\n" .
- 
-'X-Mailer: PHP/' . phpversion();
- 
-@mail($email_to, $email_subject, $email_message, $headers);  
- 
-header('Location:indexs.html#contact');
-
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -131,7 +13,10 @@ header('Location:indexs.html#contact');
         <link href="css/style.css" type="text/css" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet">
         <link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
-    </head>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>    
+    
+	</head>
     <body id="top" class="scrollspy demo-2">
        <div id="wrapper">
        <!-- Pre Loader -->
@@ -317,7 +202,11 @@ header('Location:indexs.html#contact');
                         </div>
                     </div>
                 </div>
-            </div>
+		<div align="center" style="padding:15px; margin-bottom:5px; ">
+		<p style="font-size: 16px; display:inline-block; overflow:hidden;"> בתמיכת </p>
+		<img src="img/eeriea.png" alt="עיריית קרית אונו" width="173" height= "85">
+		</div>
+	 </div>
         </div>
 
         <!--Parallax-->
@@ -370,7 +259,7 @@ header('Location:indexs.html#contact');
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">בן להב<br/>
-                                <small><em><a class="red-text text-darken-1" >Designer</a></em></small>
+                                <small><em><a class="red-text text-darken-1" >מוביל</a></em></small>
                                 </span>
                                 <p>
                                     <a class="blue-text text-lighten-2" href="https://www.facebook.com/ben.lahav.9?fref=ts">
@@ -426,7 +315,7 @@ header('Location:indexs.html#contact');
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">נועם להב <br/>
-                                <small><em><p class="red-text text-darken-1">CEO</p></em></small></span>
+                                <small><em><p class="red-text text-darken-1">מוביל</p></em></small></span>
                                 <p>
                                     <a class="blue-text text-lighten-2" href="https://www.facebook.com/noam.r.lahav?fref=ts">
                                     <i class="fa fa-facebook-square"></i>
@@ -456,13 +345,16 @@ header('Location:indexs.html#contact');
             </div>
         </footer>
         <!--  Scripts-->
-        <script type='text/javascript'>alert('פנייתך התקבלה, נחזור אליך בקרוב!')</script>
+	       
+ <script>
+		
+	$(window).bind("load", function() {
+   	alert('פנייתך התקבלה, נחזור אליך בקרוב!');
+	});
+
+</script>
 	<script src="min/plugin-min.js"></script>
         <script src="js/init.js"></script>
         </div>
     </body>
 </html>
-
-<?php
-
-?>
